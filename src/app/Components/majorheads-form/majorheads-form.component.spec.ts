@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MajorheadsListComponent } from './majorheads-list.component';
+import { MajorheadsFormComponent } from './majorheads-form.component';
 
-describe('MajorheadsListComponent', () => {
-  let component: MajorheadsListComponent;
-  let fixture: ComponentFixture<MajorheadsListComponent>;
+describe('MajorheadsFormComponent', () => {
+  let component: MajorheadsFormComponent;
+  let fixture: ComponentFixture<MajorheadsFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MajorheadsListComponent]
+      imports: [MajorheadsFormComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(MajorheadsListComponent);
+    fixture = TestBed.createComponent(MajorheadsFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

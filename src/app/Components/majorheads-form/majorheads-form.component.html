@@ -1,0 +1,29 @@
+<div class="header">
+    @if(isEdit){
+    <h2>Edit Major Head Details</h2>
+    }@else{
+    <h2>Create Major Head</h2>
+    }
+</div>
+
+<div class="card tbl">
+
+    <form [formGroup]="majorHeadsForm" (ngSubmit)="save()">
+        <input type="text" pInputText formControlName="name" placeholder="Enter Name" />
+        <input type="text" pInputText formControlName="code" placeholder="Enter Code" />
+        <div class="buttn">
+            @if(isEdit){
+            <div class="px-2"><button pButton color="primary" type="submit">Update</button>
+                <span><button pButton color="primary" class="cancel" (click)="cancel()">cancel</button></span>
+            </div>
+            }@else{
+            <div class="px-2"><button pButton color="primary" type="submit">Create</button>
+                <span><button pButton color="primary" class="cancel" (click)="cancel()">cancel</button></span>
+            </div>
+
+            }
+
+
+        </div>
+    </form>
+</div>

@@ -1,0 +1,9 @@
+.delete {
+    margin-left: 20px;
+    background-color: red;
+}
+
+.addBtn {
+    text-align: end;
+    margin-bottom: 20px;
+}

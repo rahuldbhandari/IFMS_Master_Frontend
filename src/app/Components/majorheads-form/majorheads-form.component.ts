@@ -1,0 +1,96 @@
+import { Component, inject } from '@angular/core';
+import { InputTextModule } from 'primeng/inputtext';
+import { Majorhead } from '../../Models/majorhead';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MajorheadService } from '../../Services/majorhead.service';
+import { response } from 'express';
+
+@Component({
+  selector: 'app-majorhead-form',
+  standalone: true,
+  imports: [InputTextModule, FormsModule, ButtonModule, ReactiveFormsModule],
+  templateUrl: './majorheads-form.component.html',
+  styleUrl: './majorheads-form.component.css'
+})
+export class MajorheadsFormComponent {
+
+  formBuilder = inject(FormBuilder);
+  httpService = inject(MajorheadService);
+  router = inject(Router);
+  route = inject(ActivatedRoute);
+  majorHeadsForm = this.formBuilder.group({
+    code: ['', [Validators.required]],
+    name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]],
+    // short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]]
+  });
+
+
+  majorId!: number;
+  isEdit = false;
+  ngOnInit() {
+    this.majorId = this.route.snapshot.params['id'];
+    console.log(this.majorId);
+
+    if (this.majorId) {
+      this.isEdit = true;
+      this.httpService.getMajorheads(this.majorId).subscribe(response => {
+        console.log(response.result);
+        // this.majorHeadsForm.
+        this.majorHeadsForm.patchValue(response.result);
+        // this.majorHeadsForm.patchValue({
+        //   name: response.result.name!,
+        //   code: response.result.code
+        // });
+        // 
+      })
+    }
+
+  }
+
+  save() {
+    console.log(this.majorHeadsForm.value);
+    const majorheads: Majorhead = {
+      name: this.majorHeadsForm.value.name!,
+      code: this.majorHeadsForm.value.code!,
+
+    }
+
+
+
+    if (this.isEdit) {
+      if (this.majorHeadsForm.valid) {
+        // majorheads.updated_at = new Date();
+        this.httpService.updateMajorheads(this.majorId, majorheads).subscribe((response) => {
+          console.log(response.statusCode);
+          this.router.navigateByUrl("/majorheads-list");
+
+        });
+      }
+      else {
+        alert("Please fill the requierd field and use only character.");
+      }
+    } else {
+      if (this.majorHeadsForm.valid) {
+        this.httpService.createMajorheads(majorheads).subscribe((response) => {
+          console.log(response.statusCode);
+
+          this.router.navigateByUrl("/majorheads-list");
+
+        });
+      }
+      else {
+        alert("Please fill the requierd field and use only character.");
+      }
+
+    }
+
+  }
+  cancel() {
+    // console.log(id);
+    this.router.navigateByUrl("/majorheads-list");
+
+  }
+
+}
