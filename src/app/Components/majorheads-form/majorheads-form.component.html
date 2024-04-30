@@ -1,4 +1,4 @@
-<div class="header">
+<div class="text-center">
     @if(isEdit){
     <h2>Edit Major Head Details</h2>
     }@else{
@@ -6,24 +6,28 @@
     }
 </div>
 
-<div class="card tbl">
+<div class="flex justify-content-center ">
+    <div class="card text-center p-4 bg-surface-100 shadow-1">
 
-    <form [formGroup]="majorHeadsForm" (ngSubmit)="save()">
-        <input type="text" pInputText formControlName="name" placeholder="Enter Name" />
-        <input type="text" pInputText formControlName="code" placeholder="Enter Code" />
-        <div class="buttn">
-            @if(isEdit){
-            <div class="px-2"><button pButton color="primary" type="submit">Update</button>
-                <span><button pButton color="primary" class="cancel" (click)="cancel()">cancel</button></span>
+        <form [formGroup]="majorHeadsForm" (ngSubmit)="save()">
+            <input type="text" pInputText formControlName="name" placeholder="Enter Name" class="my-3 m-1" />
+            <input type="text" pInputText formControlName="code" placeholder="Enter Code" class="mb-3 m-1" />
+            <div class="">
+                @if(isEdit){
+                <div class=""><button pButton color="primary" type="submit">Update</button>
+                    <span class="ml-3"><button pButton color="danger" class="bg-red-500"
+                            (click)="cancel()">Cancel</button></span>
+                </div>
+                }@else{
+                <div class=""><button pButton color="primary" type="submit">Create</button>
+                    <span><button pButton color="primary" class="bg-red-500 ml-3"
+                            (click)="cancel()">Cancel</button></span>
+                </div>
+
+                }
+
+
             </div>
-            }@else{
-            <div class="px-2"><button pButton color="primary" type="submit">Create</button>
-                <span><button pButton color="primary" class="cancel" (click)="cancel()">cancel</button></span>
-            </div>
-
-            }
-
-
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

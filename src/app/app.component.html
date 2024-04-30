@@ -1,16 +1,24 @@
-<div class="card menuCard">
-    <p-toolbar class="menu">
+<div w-full>
+    <p-tabMenu [model]="items" [activeItem]="activeItem" (activeItemChange)="onActiveItemChange($event)"></p-tabMenu>
+
+
+    <!-- <p-toolbar>
         <div class="p-toolbar-group-start">
-            <h4><a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></h4>
-            <h4><a routerLink="/majorheads-list" routerLinkActive="active" ariaCurrentWhenActive="page">Major
-                    Heads</a></h4>
-            <h4><a routerLink="/majorheads-list" routerLinkActive="active" ariaCurrentWhenActive="page">SubMajor
-                    Heads</a></h4>
-            <h4><a routerLink="/majorheads-list" routerLinkActive="active" ariaCurrentWhenActive="page">Minor
-                    Heads</a></h4>
+            <h3 class="mr-3"><a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page"><i
+                        class="pi pi-home mr-1"></i>Home</a></h3>
+            <h3 class="mr-3"><a routerLink="/majorheads-list" routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Major
+                    Heads</a></h3>
+            <h3 class="mr-3"><a routerLink="/majorheads-list" routerLinkActive="active"
+                    ariaCurrentWhenActive="page">SubMajor
+                    Heads</a></h3>
+            <h3 class="mr-3"><a routerLink="/majorheads-list" routerLinkActive="active"
+                    ariaCurrentWhenActive="page">Minor
+                    Heads</a></h3>
         </div>
 
-    </p-toolbar>
+    </p-toolbar> -->
+    <div class="flex justify-content-center">
+        <router-outlet></router-outlet>
+    </div>
 </div>
-
-<router-outlet></router-outlet>

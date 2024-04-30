@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MajorheadService } from '../../Services/majorhead.service';
 import { response } from 'express';
 
+
 @Component({
   selector: 'app-majorhead-form',
   standalone: true,
@@ -16,14 +17,17 @@ import { response } from 'express';
 })
 export class MajorheadsFormComponent {
 
+
+
   formBuilder = inject(FormBuilder);
   httpService = inject(MajorheadService);
   router = inject(Router);
   route = inject(ActivatedRoute);
   majorHeadsForm = this.formBuilder.group({
-    code: ['', [Validators.required]],
-    name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]],
+    code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
+    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
     // short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]]
+    // ['',[Validators.required,Validators.minLength(2),Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]]
   });
 
 
@@ -50,7 +54,7 @@ export class MajorheadsFormComponent {
   }
 
   save() {
-    console.log(this.majorHeadsForm.value);
+    // console.log(this.majorHeadsForm.value);
     const majorheads: Majorhead = {
       name: this.majorHeadsForm.value.name!,
       code: this.majorHeadsForm.value.code!,

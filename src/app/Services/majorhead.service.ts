@@ -34,7 +34,7 @@ export class MajorheadService {
   //   return this.http.put<IBranches[]>(this.apiUrl + "/api/Branches/" + branchesId, branches)
   // }
   updateMajorheads(majorId: number, majorheads: Majorhead): Observable<SingleMajorheadResponse> {
-    return this.http.put<SingleMajorheadResponse>(this.apiUrl + "MajorHead/MajorHeadUpdate" + majorId, majorheads)
+    return this.http.put<SingleMajorheadResponse>(this.apiUrl + "MajorHead/MajorHeadUpdate/" + majorId, majorheads)
   }
 
 

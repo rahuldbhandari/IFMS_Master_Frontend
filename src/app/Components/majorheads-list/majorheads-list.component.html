@@ -1,11 +1,12 @@
-<div class="card tabl">
-    <div><button pButton label="Add Majorhead" class="addBtn" (click)="add()"></button></div>
+<div class="card">
+    <div class="text-center my-4"><button pButton (click)="add()"><i class="pi pi-plus mr-1"></i>Add
+            Majorhead</button></div>
     <p-table [value]="majorheadList">
         <ng-template pTemplate="header">
             <tr>
-                <th>Majorhead Id</th>
-                <th>Majorhead Code</th>
-                <th>Majorhead Name</th>
+                <th pSortableColumn="id">Majorhead Id<p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="code">Majorhead Code<p-sortIcon field="code"></p-sortIcon></th>
+                <th pSortableColumn="name">Majorhead Name<p-sortIcon field="name"></p-sortIcon></th>
                 <th>Action</th>
 
             </tr>
@@ -20,8 +21,10 @@
                             ariaCurrentWhenActive="page">Edit</a><span class="delete"><a
                                 (click)="delete(major.id)">Delete
                             </a></span></h4> -->
-                    <button pButton label="Edit" class="edit" (click)="edit(major.id)"></button>
-                    <button pButton label="Delete" class="delete" (click)="delete(major.id)"></button>
+                    <button pButton label="" class="mr-2" (click)="edit(major.id)"><i class="pi pi-pen-to-square"
+                            style="color: white"></i></button>
+                    <button pButton class="bg-red-500" (click)="delete(major.id)"><i class="pi pi-trash"
+                            style="color: white"></i></button>
                 </td>
 
             </tr>
