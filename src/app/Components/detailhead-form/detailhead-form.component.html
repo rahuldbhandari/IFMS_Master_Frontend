@@ -1,0 +1,93 @@
+<!-- <p>detailhead-form works!</p> -->
+
+<div class="card flex justify-content-center">
+    <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button>
+    <p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{width: '50vw'}" [maximizable]="true">
+        <div class="flex justify-content-center">
+    
+            <form [formGroup]="detailheadForm" (ngSubmit)="save()">
+                
+              
+               
+                    
+                    <div class="feild" class="pb-3">
+                        <label for="name" >Detail Head Name
+                        </label>
+                        <input type="text" pInputText id="name" formControlName="name" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="name" placeholder="Detail Head Name ">
+                       
+                    </div>
+                    <div class="feild" class="pb-3">
+                        <label for="code">Detail Head Code
+            
+                        </label>
+                        <input type="text" pInputText formControlName="code" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head Code">
+                    </div>
+                    <div class="flex justify-center ">
+                        @if(isEdit)
+                        {
+                            <p-button label="Update" class="btn pr-8" styleClass="w-full" type="submit"></p-button>
+                            <p-button label="Cancel" class="btn" styleClass="w-full" (click)="cancel()" severity="danger"></p-button>
+            
+                        }
+                        @else{
+                            <p-button label="Create" class="btn pr-8" styleClass="w-full" type="submit"></p-button>
+                            <p-button label="Cancel" class="btn" styleClass="w-full" (click)="cancel()" severity="danger"></p-button>
+            
+                        }
+                        </div>
+            
+                
+          
+                
+               
+           
+            
+            </form>
+        </div> 
+       
+    </p-dialog>
+</div>
+
+<!-- <div class="flex justify-content-center">
+    
+    <form [formGroup]="detailheadForm" (ngSubmit)="save()">
+        
+      
+        <p-card header="Detail Head" [style]="{ width: '360px' ,margin: 'auto'}">
+           
+            
+            <div class="feild" class="pb-3">
+                <label for="name" >Detail Head Name
+                </label>
+                <input type="text" pInputText id="name" formControlName="name" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="name" placeholder="Detail Head Name ">
+               
+            </div>
+            <div class="feild" class="pb-3">
+                <label for="code">Detail Head Code
+    
+                </label>
+                <input type="text" pInputText formControlName="code" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head Code">
+            </div>
+            <div class="flex justify-center ">
+                @if(isEdit)
+                {
+                    <p-button label="Update" class="btn pr-8" styleClass="w-full" type="submit"></p-button>
+                    <p-button label="Cancel" class="btn" styleClass="w-full" (click)="cancel()" severity="danger"></p-button>
+    
+                }
+                @else{
+                    <p-button label="Create" class="btn pr-8" styleClass="w-full" type="submit"></p-button>
+                    <p-button label="Cancel" class="btn" styleClass="w-full" (click)="cancel()" severity="danger"></p-button>
+    
+                }
+                </div>
+    
+        
+        </p-card>
+        
+       
+   
+    
+    </form>
+</div> -->
+    
