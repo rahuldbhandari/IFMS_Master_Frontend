@@ -1,0 +1,39 @@
+<div class="text-center">
+    <h2>SubMajor Head Details</h2>
+</div>
+<div class="card">
+    <div class="text-center my-4"><button pButton (click)="add()"><i class="pi pi-plus mr-1"></i>Add
+            SubMajorhead</button></div>
+    <p-table [value]="submajorheadList">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="id">SubMajorhead Id<p-sortIcon field="id"></p-sortIcon></th>
+                <th pSortableColumn="code">SubMajorhead Code<p-sortIcon field="code"></p-sortIcon></th>
+                <th pSortableColumn="name">SubMajorhead Name<p-sortIcon field="name"></p-sortIcon></th>
+                <th pSortableColumn="majorHeadId">Majorhead Name<p-sortIcon field="majorHeadId"></p-sortIcon></th>
+                <th>Action</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-submajor>
+            <tr>
+                <td>{{ submajor.id }}</td>
+                <td>{{ submajor.code }}</td>
+                <td>{{ submajor.name }}</td>
+                <td>{{ submajor.majorHeadId }}</td>
+                <td>
+                    <!-- <h4><a routerLink="/majorhead-form" routerLinkActive="active"
+                            ariaCurrentWhenActive="page">Edit</a><span class="delete"><a
+                                (click)="delete(major.id)">Delete
+                            </a></span></h4> -->
+                    <button pButton label="" class="mr-2" (click)="edit(submajor.id)"><i class="pi pi-pen-to-square"
+                            style="color: white"></i></button>
+                    <button pButton class="bg-red-500" (click)="delete(submajor.id)"><i class="pi pi-trash"
+                            style="color: white"></i></button>
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>

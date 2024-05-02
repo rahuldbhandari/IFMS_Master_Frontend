@@ -14,6 +14,9 @@ export class MajorheadService {
 
   constructor(private http: HttpClient) { }
 
+  // getAllMajorheadsSub(): Observable<MajorheadResponse[]> {
+  //   return this.http.get<MajorheadResponse[]>(this.apiUrl + "MajorHead");
+  // }
   getAllMajorheads(): Observable<MajorheadResponse> {
     return this.http.get<MajorheadResponse>(this.apiUrl + "MajorHead");
   }
