@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
-import { Majorhead } from '../../Models/majorhead';
+import { Majorhead, SingleMajorheadResponse } from '../../Models/majorhead';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -25,15 +25,19 @@ export class MajorheadsFormComponent {
   route = inject(ActivatedRoute);
   majorHeadsForm = this.formBuilder.group({
     code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
-    name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
+    name: ['', [Validators.required, Validators.maxLength(150), Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
     // short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]]
     // ['',[Validators.required,Validators.minLength(2),Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]]
   });
 
 
+  // majorHeadsForm: FormGroup;
   majorId!: number;
+  // code!: string;
   isEdit = false;
   ngOnInit() {
+
+
     this.majorId = this.route.snapshot.params['id'];
     console.log(this.majorId);
 
@@ -95,6 +99,17 @@ export class MajorheadsFormComponent {
     // console.log(id);
     this.router.navigateByUrl("/majorheads-list");
 
+  }
+
+  checkCodeExistence() {
+    const code = this.majorHeadsForm.value.code;
+    if (code && code.length >= 2 && code.length <= 4) {
+      this.httpService.getMajorheadsCode(code).subscribe((response: SingleMajorheadResponse) => {
+        if (response && response.result) {
+          alert("This code already exists in the database.");
+        }
+      });
+    }
   }
 
 }

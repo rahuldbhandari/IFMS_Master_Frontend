@@ -11,7 +11,8 @@
 
         <form [formGroup]="majorHeadsForm" (ngSubmit)="save()">
             <input type="text" pInputText formControlName="name" placeholder="Enter Name" class="my-3 m-1" />
-            <input type="text" pInputText formControlName="code" placeholder="Enter Code" class="mb-3 m-1" />
+            <input type="text" pInputText formControlName="code" placeholder="Enter Code" class="mb-3 m-1"
+                (blur)="checkCodeExistence()" />
             <div class="">
                 @if(isEdit){
                 <div class=""><button pButton color="primary" type="submit">Update</button>

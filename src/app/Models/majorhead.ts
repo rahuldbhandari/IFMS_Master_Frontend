@@ -4,6 +4,7 @@ export interface MajorheadResponse {
     errorMessage: string;
 }
 export interface SingleMajorheadResponse {
+
     result: Majorhead;
     statusCode: number;
     errorMessage: string;

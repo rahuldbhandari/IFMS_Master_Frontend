@@ -24,6 +24,9 @@ export class MajorheadService {
   getMajorheads(majorId: number): Observable<SingleMajorheadResponse> {
     return this.http.get<SingleMajorheadResponse>(this.apiUrl + "MajorHead/MajorHeadById/" + majorId);
   }
+  getMajorheadsCode(code: string): Observable<SingleMajorheadResponse> {
+    return this.http.get<SingleMajorheadResponse>(this.apiUrl + "MajorHead/MajorHeadByCode/" + code);
+  }
   createMajorheads(majorheads: Majorhead): Observable<SingleMajorheadResponse> {
     return this.http.post<SingleMajorheadResponse>(this.apiUrl + "MajorHead/MajorHeadAdd", majorheads);
   }
