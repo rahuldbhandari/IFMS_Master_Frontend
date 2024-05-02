@@ -7,11 +7,13 @@ import { SubmajorheadService } from '../../Services/submajorhead.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TreeSelectModule } from 'primeng/treeselect';
+import { Submajorhead } from '../../Models/submajorhead';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-minorheads-form',
   standalone: true,
-  imports: [FormsModule, InputTextModule, ButtonModule, ReactiveFormsModule, TreeSelectModule],
+  imports: [FormsModule, InputTextModule, ButtonModule, ReactiveFormsModule, TreeSelectModule, DropdownModule],
   templateUrl: './minorheads-form.component.html',
   styleUrl: './minorheads-form.component.css'
 })
@@ -28,10 +30,7 @@ export class MinorheadsFormComponent {
     // short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]]
     // ['',[Validators.required,Validators.minLength(2),Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]]
   });
-  minorheads: Minorhead[] = [];
-  // formGroup!: FormGroup;
-  // treeNodes: TreeNode[] = [];
-
+  submajorheads: Submajorhead[] = [];
   constructor(public submajorService: SubmajorheadService) { }
 
   minorId!: number;
@@ -55,10 +54,10 @@ export class MinorheadsFormComponent {
       })
     }
 
-    this.submajorService.getAllSubMajorheads().subscribe(majors => {
+    this.submajorService.getAllSubMajorheads().subscribe(submajors => {
 
-      console.log(majors.result);
-      // this.majorheads = majors.result['name'];
+      console.log(submajors.result);
+      this.submajorheads = submajors.result;
 
     });
 

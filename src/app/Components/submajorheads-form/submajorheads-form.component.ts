@@ -33,9 +33,6 @@ export class SubmajorheadsFormComponent {
     // ['',[Validators.required,Validators.minLength(2),Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]]
   });
   majorheads: Majorhead[] = [];
-  // formGroup!: FormGroup;
-  // treeNodes: TreeNode[] = [];
-
   constructor(public majorService: MajorheadService) { }
 
   submajorId!: number;

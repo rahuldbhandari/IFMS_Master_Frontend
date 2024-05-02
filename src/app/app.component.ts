@@ -3,7 +3,7 @@ import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router'
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MajorheadsListComponent } from './Components/majorheads-list/majorheads-list.component';
-import { TabMenuModule } from 'primeng/tabmenu';
+import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api/menuitem';
 import { DropdownModule } from 'primeng/dropdown';
 import { TieredMenuModule } from 'primeng/tieredmenu';
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ButtonModule, TabMenuModule, RouterLink, MajorheadsListComponent, DropdownModule, RouterModule, ToolbarModule, TieredMenuModule, CommonModule],
+  imports: [RouterOutlet, ButtonModule, MenubarModule, RouterLink, MajorheadsListComponent, DropdownModule, RouterModule, ToolbarModule, TieredMenuModule, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -43,21 +43,30 @@ export class AppComponent {
     // ];
     // this.activeItem = this.items[0];
     this.items = [
+      { label: 'Home', icon: 'pi pi-fw pi-home', routerLink: '/', },
+
       {
         label: 'Major Heads',
-        icon: 'pi pi-users',
+        icon: 'pi pi-fw pi-file',
         items: [
           {
-            label: 'Major Head',
-            route: '/majorheads-list'
+            label: 'Major head ',
+            icon: 'pi pi-list',
+            routerLink: '/majorheads-list',
+
           },
           {
-            label: 'SubMajor Head',
-            route: '/submajorheads-list'
-          }, {
+            label: 'Sub Major Head',
+            icon: 'pi pi-list',
+            routerLink: '/submajorheads-list',
+          },
+          {
             label: 'Minor Head',
-            route: '/minorheads-list'
-          }
+            icon: 'pi pi-list',
+            routerLink: '/minorheads-list',
+          },
+
+
         ]
       },
 
