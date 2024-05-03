@@ -25,7 +25,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/primeflex/primeflex.css"
+
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -96,5 +98,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "16b56302-edbd-4f4d-a80f-10682e20016b"
   }
 }

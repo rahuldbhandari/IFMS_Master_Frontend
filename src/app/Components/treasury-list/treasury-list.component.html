@@ -1,0 +1,34 @@
+<p-table [value]="treasuries" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+            <tr>
+                <th>Treasury Id</th>
+                <th>District Name</th>
+                <th>District Code</th>
+                <th>Treasury Code</th>
+                <th>Treasury Name</th>
+                <th>Action</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-treasury>
+            <tr>
+                <td>{{ treasury.id }}</td>
+                <td>{{ treasury.districtName }}</td>
+                <td>{{ treasury.districtCode }}</td>
+                <td>{{ treasury.code }}</td>
+                <td>{{ treasury.name }}</td>
+                <td>
+                    <!-- <h4><a routerLink="/majorhead-form" routerLinkActive="active"
+                            ariaCurrentWhenActive="page">Edit</a><span class="delete"><a
+                                (click)="delete(major.id)">Delete
+                            </a></span></h4> -->
+                    <!-- <button pButton label="" class="mr-2" (click)="edit(treasury.id)"><i class="pi pi-pen-to-square"
+                            style="color: white"></i></button>
+                    <button pButton class="bg-red-500" (click)="delete(treasury.id)"><i class="pi pi-trash"
+                            style="color: white"></i></button> -->
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+
