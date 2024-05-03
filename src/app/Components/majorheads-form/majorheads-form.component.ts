@@ -24,7 +24,7 @@ export class MajorheadsFormComponent {
   router = inject(Router);
   route = inject(ActivatedRoute);
   majorHeadsForm = this.formBuilder.group({
-    code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(4)]],
+    code: ['', [Validators.required, Validators.maxLength(4)]],
     name: ['', [Validators.required, Validators.maxLength(150), Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
     // short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]]
     // ['',[Validators.required,Validators.minLength(2),Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]]
@@ -65,6 +65,10 @@ export class MajorheadsFormComponent {
 
     }
 
+    if (this.majorHeadsForm.controls['name'].errors && this.majorHeadsForm.controls['name'].errors['maxlength']) {
+      alert("Name cannot exceed 150 characters.");
+      return;
+    }
 
 
     if (this.isEdit) {
@@ -101,12 +105,16 @@ export class MajorheadsFormComponent {
 
   }
 
+  buttonDisabled: boolean = true;
   checkCodeExistence() {
     const code = this.majorHeadsForm.value.code;
-    if (code && code.length >= 2 && code.length <= 4) {
+    if (code && code.length <= 4) {
       this.httpService.getMajorheadsCode(code).subscribe((response: SingleMajorheadResponse) => {
         if (response && response.result) {
           alert("This code already exists.");
+          this.buttonDisabled = true; // Disable the button if code already exists
+        } else {
+          this.buttonDisabled = !this.majorHeadsForm.valid; // Enable/disable based on form validity
         }
       });
     }

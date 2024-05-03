@@ -4,7 +4,7 @@
 <div class="card">
     <div class="text-center my-4"><button pButton (click)="add()"><i class="pi pi-plus mr-1"></i>Add
             SubMajorhead</button></div>
-    <p-table [value]="submajorheadList">
+    <p-table [value]="submajorheadList" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20,100]">
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="id">SubMajorhead Id<p-sortIcon field="id"></p-sortIcon></th>

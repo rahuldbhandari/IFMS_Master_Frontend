@@ -4,7 +4,7 @@
 <div class="card">
     <div class="text-center my-4"><button pButton (click)="add()"><i class="pi pi-plus mr-1"></i>Add
             Majorhead</button></div>
-    <p-table [value]="majorheadList">
+    <p-table [value]="majorheadList" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,20,100]">
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="id">Majorhead Id<p-sortIcon field="id"></p-sortIcon></th>
