@@ -1,6 +1,6 @@
 <!-- <p>detailhead-form works!</p> -->
 
-<div class="card flex justify-content-center">
+<!-- <div class="card flex justify-content-center">
     <p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button>
     <p-dialog header="Header" [modal]="true" [(visible)]="visible" [style]="{width: '50vw'}" [maximizable]="true">
         <div class="flex justify-content-center">
@@ -46,14 +46,21 @@
         </div> 
        
     </p-dialog>
+</div> -->
+<div class="flex justify-content-center ">
+    @if(isEdit){
+  <h2 >Edit Detail Head Details</h2>
+} @else{
+  <h2 >Create Detail Head Form</h2>
+}
 </div>
-
-<!-- <div class="flex justify-content-center">
+ <div class="flex justify-content-center items-center h-full ">
+   
     
     <form [formGroup]="detailheadForm" (ngSubmit)="save()">
         
       
-        <p-card header="Detail Head" [style]="{ width: '360px' ,margin: 'auto'}">
+        <p-card  [style]="{ width: '360px' ,margin: 'auto'}" >
            
             
             <div class="feild" class="pb-3">
@@ -89,5 +96,5 @@
    
     
     </form>
-</div> -->
+</div> 
     

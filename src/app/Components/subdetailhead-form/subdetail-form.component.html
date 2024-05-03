@@ -1,0 +1,60 @@
+<!-- <p>subdetail-form works!</p> -->
+<div class="flex justify-content-center ">
+    @if(isEdit){
+  <h2 >Edit Sub Detail Head Details</h2>
+} @else{
+  <h2 >Create Sub Detail Head Form</h2>
+}
+</div>
+ <div class="flex justify-content-center items-center h-full ">
+   
+    
+    <form [formGroup]="subdetailheadForm" (ngSubmit)="save()">
+        
+      
+        <p-card  [style]="{ width: '360px' ,margin: 'auto'}" >
+           
+            
+            <div class="feild" class="pb-3">
+                <label for="name" >Sub Detail Head Name
+                </label>
+                <input type="text" pInputText id="name" formControlName="name" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="name" placeholder="Detail Head Name ">
+               
+            </div>
+            <div class="feild" class="pb-3">
+                <label for="code"> Sub Detail Head Code
+    
+                </label>
+                <input type="text" pInputText formControlName="code" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head Code">
+            </div>
+            <div class="field pb-3">
+                <p-dropdown formControlName="detailHeadId" [options]="detailhead" optionValue="id" optionLabel="name"
+                 placeholder="Select SubMajorHead" filter="true" filterBy="name,id">
+                <ng-template let-option pTemplate="item">
+                    {{ option.id }} : {{ option.name }} <!-- Display both name and id for each option -->
+                </ng-template>
+
+            </p-dropdown>
+            </div>
+            <div class="flex justify-center ">
+                @if(isEdit)
+                {
+                    <p-button label="Update" class="btn pr-8" styleClass="w-full" type="submit"></p-button>
+                    <p-button label="Cancel" class="btn" styleClass="w-full" (click)="cancel()" severity="danger"></p-button>
+    
+                }
+                @else{
+                    <p-button label="Create" class="btn pr-8" styleClass="w-full" type="submit"></p-button>
+                    <p-button label="Cancel" class="btn" styleClass="w-full" (click)="cancel()" severity="danger"></p-button>
+    
+                }
+                </div>
+    
+        
+        </p-card>
+        
+       
+   
+    
+    </form>
+</div> 
