@@ -106,7 +106,7 @@ export class MajorheadsFormComponent {
     if (code && code.length >= 2 && code.length <= 4) {
       this.httpService.getMajorheadsCode(code).subscribe((response: SingleMajorheadResponse) => {
         if (response && response.result) {
-          alert("This code already exists in the database.");
+          alert("This code already exists.");
         }
       });
     }

@@ -114,7 +114,7 @@ export class SubmajorheadsFormComponent {
     if (code && code.length >= 2 && code.length <= 4) {
       this.httpService.getSubMajorheadsCode(code).subscribe((response: SingleSubmajorheadResponse) => {
         if (response && response.result) {
-          alert("This code already exists in the database.");
+          alert("This code already exists.");
         }
       });
     }

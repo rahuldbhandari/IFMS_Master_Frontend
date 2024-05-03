@@ -113,7 +113,7 @@ export class MinorheadsFormComponent {
     if (code && code.length >= 2 && code.length <= 4) {
       this.httpService.getMinorHeadsCode(code).subscribe((response: SingleMinorheadResponse) => {
         if (response && response.result) {
-          alert("This code already exists in the database.");
+          alert("This code already exists.");
         }
       });
     }
