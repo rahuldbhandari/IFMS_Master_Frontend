@@ -26,7 +26,7 @@ export class SubmajorheadsFormComponent {
   route = inject(ActivatedRoute);
 
   submajorHeadsForm = this.formBuilder.group({
-    code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+    code: ['', [Validators.required, Validators.maxLength(2)]],
     name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
     majorHeadId: [0, [Validators.required]],
     // short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]]
@@ -59,8 +59,8 @@ export class SubmajorheadsFormComponent {
     this.majorService.getAllMajorheads().subscribe(majors => {
 
       console.log(majors.result);
-      this.majorheads = majors.result;
-
+      // this.majorheads = majors.result;
+      this.majorheads = majors.result.sort((a, b) => a.name.localeCompare(b.name));
     });
 
   }
@@ -74,7 +74,10 @@ export class SubmajorheadsFormComponent {
 
     }
 
-
+    if (this.submajorHeadsForm.controls['name'].errors && this.submajorHeadsForm.controls['name'].errors['maxlength']) {
+      alert("Name cannot exceed 150 characters.");
+      return;
+    }
 
     if (this.isEdit) {
       if (this.submajorHeadsForm.valid) {
@@ -86,7 +89,7 @@ export class SubmajorheadsFormComponent {
         });
       }
       else {
-        alert("Please fill the requierd field and use only character.");
+        alert("Please fill the requierd field.");
       }
     } else {
       if (this.submajorHeadsForm.valid) {
@@ -98,7 +101,7 @@ export class SubmajorheadsFormComponent {
         });
       }
       else {
-        alert("Please fill the requierd field and use only character.");
+        alert("Please fill the requierd field.");
       }
 
     }
@@ -109,12 +112,16 @@ export class SubmajorheadsFormComponent {
     this.router.navigateByUrl("/submajorheads-list");
 
   }
+  buttonDisabled: boolean = true;
   checkCodeExistence() {
     const code = this.submajorHeadsForm.value.code;
-    if (code && code.length >= 2 && code.length <= 4) {
+    if (code && code.length <= 4) {
       this.httpService.getSubMajorheadsCode(code).subscribe((response: SingleSubmajorheadResponse) => {
         if (response && response.result) {
           alert("This code already exists.");
+          this.buttonDisabled = true; // Disable the button if code already exists
+        } else {
+          this.buttonDisabled = !this.submajorHeadsForm.valid; // Enable/disable based on form validity
         }
       });
     }

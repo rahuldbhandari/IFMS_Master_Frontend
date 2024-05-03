@@ -31,7 +31,7 @@
                             (click)="cancel()">Cancel</button></span>
                 </div>
                 }@else{
-                <div class=""><button pButton color="primary" type="submit">Create</button>
+                <div class=""><button pButton color="primary" type="submit" [disabled]="buttonDisabled">Create</button>
                     <span><button pButton color="primary" class="bg-red-500 ml-3"
                             (click)="cancel()">Cancel</button></span>
                 </div>

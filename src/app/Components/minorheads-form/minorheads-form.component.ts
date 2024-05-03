@@ -24,7 +24,7 @@ export class MinorheadsFormComponent {
   route = inject(ActivatedRoute);
 
   minorHeadsForm = this.formBuilder.group({
-    code: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(2)]],
+    code: ['', [Validators.required, Validators.maxLength(2)]],
     name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
     subMajorId: [0, [Validators.required]],
     // short_name: ['', [Validators.required, Validators.pattern("[a-zA-Z].*")]]
@@ -46,18 +46,15 @@ export class MinorheadsFormComponent {
         console.log(response.result);
         // this.majorHeadsForm.
         this.minorHeadsForm.patchValue(response.result);
-        // this.majorHeadsForm.patchValue({
-        //   name: response.result.name!,
-        //   code: response.result.code
-        // });
-        // 
       })
     }
 
     this.submajorService.getAllSubMajorheads().subscribe(submajors => {
 
       console.log(submajors.result);
-      this.submajorheads = submajors.result;
+      // this.submajorheads = submajors.result;
+
+      this.submajorheads = submajors.result.sort((a, b) => a.name.localeCompare(b.name));
 
     });
 
@@ -72,7 +69,10 @@ export class MinorheadsFormComponent {
 
     }
 
-
+    if (this.minorHeadsForm.controls['name'].errors && this.minorHeadsForm.controls['name'].errors['maxlength']) {
+      alert("Name cannot exceed 150 characters.");
+      return;
+    }
 
     if (this.isEdit) {
       if (this.minorHeadsForm.valid) {
@@ -107,13 +107,16 @@ export class MinorheadsFormComponent {
     this.router.navigateByUrl("/minorheads-list");
 
   }
-
+  buttonDisabled: boolean = true;
   checkCodeExistence() {
     const code = this.minorHeadsForm.value.code;
-    if (code && code.length >= 2 && code.length <= 4) {
+    if (code && code.length <= 4) {
       this.httpService.getMinorHeadsCode(code).subscribe((response: SingleMinorheadResponse) => {
         if (response && response.result) {
           alert("This code already exists.");
+          this.buttonDisabled = true; // Disable the button if code already exists
+        } else {
+          this.buttonDisabled = !this.minorHeadsForm.valid; // Enable/disable based on form validity
         }
       });
     }
