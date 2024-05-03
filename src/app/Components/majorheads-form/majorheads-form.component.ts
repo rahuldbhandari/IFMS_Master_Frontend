@@ -1,11 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
-import { Majorhead, SingleMajorheadResponse } from '../../Models/majorhead';
+
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MajorheadService } from '../../Services/majorhead.service';
+
 import { response } from 'express';
+import { MajorheadService } from '../../Services/majorhead.service';
+import { Majorhead, SingleMajorheadResponse } from '../../Models/majorhead';
 
 
 @Component({

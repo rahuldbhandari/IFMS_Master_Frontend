@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Majorhead, MajorheadResponse, SingleMajorheadResponse } from '../Models/majorhead';
+
 import { Observable } from 'rxjs/internal/Observable';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../Environments/environment';
+
 import { map } from 'rxjs/internal/operators/map';
+import { Majorhead, MajorheadResponse, SingleMajorheadResponse } from '../Models/majorhead';
+import { environment } from '../Environments/environment';
 
 @Injectable({
   providedIn: 'root'
