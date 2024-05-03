@@ -9,7 +9,7 @@
 
     
 <div class="card border-1 border-blue-300 border-round-left-xs">
-    <p-table [value]="detailhead" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20]" >
+    <p-table [value]="detailhead" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,50,100]" >
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="id">Detail Head ID<p-sortIcon field="id"></p-sortIcon></th>
@@ -25,7 +25,7 @@
                 <td>{{ detailhead.name }}</td>
                 <td>{{ detailhead.code }}</td>
                 <td>
-                        <p-button   (click)="edit(detailhead.id)"><i class="pi pi-pencil"></i></p-button>
+                        <p-button   (click)="edit(detailhead.id)" class="mr-2"><i class="pi pi-pencil"></i></p-button>
                             <p-button  (click)="delete(detailhead.id)" severity="danger"><i class="pi pi-trash"></i></p-button>
                         </td>
                         

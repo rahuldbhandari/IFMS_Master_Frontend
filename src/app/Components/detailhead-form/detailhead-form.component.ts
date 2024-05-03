@@ -5,11 +5,13 @@ import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
-import { HttpService } from '../../Services/detailheadservice';
+
 import { ActivatedRoute, Router } from '@angular/router';
-import { Idetailhead, singleDetailheadResponse } from '../../Models/detailhead';
+
 import { response } from 'express';
 import { DialogModule } from 'primeng/dialog';
+import { HttpService } from '../../Services/detailheadservice';
+import { Idetailhead, singleDetailheadResponse } from '../../Models/detailhead';
 
 
 
@@ -24,7 +26,7 @@ export class DetailheadFormComponent {
   httpService=inject(HttpService);
   router=inject(Router);
   route=inject(ActivatedRoute);
-  formbuilder=inject(FormBuilder)
+  formbuilder=inject(FormBuilder);
   
   detailheadForm=this.formbuilder.group({
     

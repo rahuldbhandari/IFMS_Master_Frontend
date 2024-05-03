@@ -61,20 +61,18 @@
         
       
         <p-card  [style]="{ width: '360px' ,margin: 'auto'}" >
+            <div class="feild" class="pb-3">
+               
+                <input type="text" pInputText formControlName="code" (blur)="checkCodeExistence()" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head">
+            </div>
            
             
             <div class="feild" class="pb-3">
-                <label for="name" >Detail Head Name
-                </label>
+                
                 <input type="text" pInputText id="name" formControlName="name" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="name" placeholder="Detail Head Name ">
                
             </div>
-            <div class="feild" class="pb-3">
-                <label for="code">Detail Head Code
-    
-                </label>
-                <input type="text" pInputText formControlName="code" (blur)="checkCodeExistence()" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head Code">
-            </div>
+            
             <div class="flex justify-center ">
                 @if(isEdit)
                 {

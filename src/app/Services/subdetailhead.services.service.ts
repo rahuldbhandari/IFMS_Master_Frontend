@@ -33,7 +33,11 @@ export class subdetailservice {
   }
 
   getSubdetailByCode(subdetail_headId:string):Observable<singleSubDetailheadResponse>{
-    return this.http.get<singleSubDetailheadResponse>(this.apiUrl +"SubDetailheadByCode/"+ subdetail_headId);
+    return this.http.get<singleSubDetailheadResponse>(this.apiUrl +"SubDetailheadByCode/" +subdetail_headId);
+   }
+
+   getSubdetailByCodeandid(subdetail:string,subdetail_headId:number):Observable<singleSubDetailheadResponse>{
+    return this.http.get<singleSubDetailheadResponse>(this.apiUrl +"SubDetailheadByidandcode/"+subdetail+"/"+subdetail_headId);
    }
   updateSubDetailHead(subdetail_headId:number,subdetail_head:ISubdetailhead):Observable<singleSubDetailheadResponse>{
    return this.http.put<singleSubDetailheadResponse>(this.apiUrl+"SubDetailUpdate/" +subdetail_headId,subdetail_head);

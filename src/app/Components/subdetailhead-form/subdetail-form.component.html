@@ -13,22 +13,11 @@
         
       
         <p-card  [style]="{ width: '360px' ,margin: 'auto'}" >
+
            
-            
-            <div class="feild" class="pb-3">
-                <label for="name" >Sub Detail Head Name
-                </label>
-                <input type="text" pInputText id="name" formControlName="name" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="name" placeholder="Detail Head Name ">
-               
-            </div>
-            <div class="feild" class="pb-3">
-                <label for="code"> Sub Detail Head Code
-    
-                </label>
-                <input type="text" pInputText formControlName="code" (blur)="checkCodeExistence()" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head Code">
-            </div>
+           
             <div class="field pb-3">
-                <p-dropdown formControlName="detailHeadId" [options]="detailhead" [showClear]="true" placeholder="Select Detail Head" optionValue="id" filter="true" filterBy="name,id">
+                <p-dropdown formControlName="detailHeadId" [options]="detailhead" [showClear]="true" placeholder="Select Detail Head" optionValue="id" filter="true" filterBy="name,id" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full">
                     <ng-template let-option pTemplate="selectedItem" >
                         {{ option.name }} <!-- Display the selected option's name -->
                     </ng-template>
@@ -38,6 +27,18 @@
                 </p-dropdown>
 
            
+            </div>
+            <div class="feild" class="pb-3">
+                
+                <input type="text" pInputText formControlName="code" (blur)="checkCodeExistence()" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head Code">
+            </div>
+
+           
+           
+            <div class="feild" class="pb-3">
+               
+                <input type="text" pInputText id="name" formControlName="name" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="name" placeholder="Detail Head Name ">
+               
             </div>
             <div class="flex justify-center ">
                 @if(isEdit)

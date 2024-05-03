@@ -6,7 +6,7 @@
 <p-button label="Add Sub Detail Head" class="btn"  (click)="back()"></p-button>
 </div>
 <div class="card card border-1 border-blue-300">
-    <p-table [value]="subdetailhead" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20]" >
+    <p-table [value]="subdetailhead" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20,50,100]" >
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="id">SubDetail Head ID<p-sortIcon field="id"></p-sortIcon></th>
@@ -24,7 +24,7 @@
                 <td>{{ subdetailhead.code }}</td>
                 <td>{{ subdetailhead.detailHeadId }}</td>
                 <td>
-                        <p-button  (click)="edit(subdetailhead.id)"><i class="pi pi-pencil"></i></p-button>
+                        <p-button  (click)="edit(subdetailhead.id)" class="mr-2"><i class="pi pi-pencil"></i></p-button>
                             <p-button  (click)="delete(subdetailhead.id)" severity="danger"><i class="pi pi-trash"></i></p-button>
                         </td>
                         

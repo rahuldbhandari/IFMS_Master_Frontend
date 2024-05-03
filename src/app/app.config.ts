@@ -7,7 +7,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { ToastrService } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideClientHydration(),provideAnimations(),provideHttpClient(),ToastModule,MessageService]
+  providers: [provideRouter(routes), provideClientHydration(),provideAnimations(),provideHttpClient(),ToastModule,MessageService,ToastrService]
 };

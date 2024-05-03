@@ -15,6 +15,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { Message } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
 
+
 @Component({
   selector: 'app-subdetail-form',
   standalone: true,
@@ -120,8 +121,9 @@ export class SubdetailFormComponent {
         }
         checkCodeExistence() {
           const code = this.subdetailheadForm.value.code;
-          if (code && code.length >= 2 && code.length <= 4) {
-            this.httpService.getSubdetailByCode(code).subscribe((response: singleSubDetailheadResponse) => {
+          const detailHeadId = this.subdetailheadForm.value.detailHeadId;
+          if (code && detailHeadId && code.length <= 4) {
+            this.httpService.getSubdetailByCodeandid(code,detailHeadId).subscribe((response: singleSubDetailheadResponse) => {
               if (response && response.result) {
                 alert("This code already exists in the database.");
                 this.disablebutton=true;
