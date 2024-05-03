@@ -112,13 +112,28 @@ export class SubmajorheadsFormComponent {
     this.router.navigateByUrl("/submajorheads-list");
 
   }
+  // buttonDisabled: boolean = true;
+  // checkCodeExistence() {
+  //   const code = this.submajorHeadsForm.value.code;
+  //   if (code && code.length <= 4) {
+  //     this.httpService.getSubMajorheadsCode(code).subscribe((response: SingleSubmajorheadResponse) => {
+  //       if (response && response.result) {
+  //         alert("This code already exists.");
+  //         this.buttonDisabled = true; // Disable the button if code already exists
+  //       } else {
+  //         this.buttonDisabled = !this.submajorHeadsForm.valid; // Enable/disable based on form validity
+  //       }
+  //     });
+  //   }
+  // }
   buttonDisabled: boolean = true;
   checkCodeExistence() {
     const code = this.submajorHeadsForm.value.code;
-    if (code && code.length <= 4) {
-      this.httpService.getSubMajorheadsCode(code).subscribe((response: SingleSubmajorheadResponse) => {
+    const majorHeadId = this.submajorHeadsForm.value.majorHeadId;
+    if (code && majorHeadId && code.length <= 4) {
+      this.httpService.getSubMajorheadsCodemajorHeadId(code, majorHeadId).subscribe((response: SingleSubmajorheadResponse) => {
         if (response && response.result) {
-          alert("This code already exists.");
+          alert("This code already exists for the selected major head.");
           this.buttonDisabled = true; // Disable the button if code already exists
         } else {
           this.buttonDisabled = !this.submajorHeadsForm.valid; // Enable/disable based on form validity

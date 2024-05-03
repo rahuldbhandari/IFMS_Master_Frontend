@@ -1,4 +1,5 @@
 <div class="text-center">
+
     @if(isEdit){
     <h2>Edit Minor Head Details</h2>
     }@else{
@@ -10,10 +11,6 @@
     <div class="card text-center p-4 bg-surface-100 shadow-1">
 
         <form [formGroup]="minorHeadsForm" (ngSubmit)="save()">
-            <input type="text" pInputText formControlName="name" placeholder="Enter Name" class="my-3 m-1" />
-            <input type="text" pInputText formControlName="code" placeholder="Enter Code" class="mb-3 m-1"
-                (blur)="checkCodeExistence()" />
-
             <p-dropdown formControlName="subMajorId" [options]="submajorheads" optionValue="id" optionLabel="name"
                 [showClear]="true" placeholder="Select SubMajorHead" filter="true" filterBy="name,id">
                 <ng-template let-option pTemplate="item">
@@ -21,8 +18,9 @@
                 </ng-template>
 
             </p-dropdown>
-
-            <!-- <p-treeSelect formControlName="majorHeadId" [options]="majors" placeholder="Select Item"></p-treeSelect> -->
+            <input type="text" pInputText formControlName="code" placeholder="Enter Code" class="mb-3 m-1"
+                (blur)="checkCodeExistence()" />
+            <input type="text" pInputText formControlName="name" placeholder="Enter Name" class="my-3 m-1" />
 
             <div class="">
                 @if(isEdit){
