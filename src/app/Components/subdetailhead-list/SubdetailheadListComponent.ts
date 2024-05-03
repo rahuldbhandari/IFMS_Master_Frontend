@@ -5,12 +5,16 @@ import { Table, TableModule } from 'primeng/table';
 import { subdetailservice } from '../../Services/subdetailhead.services.service';
 import { ISubdetailhead } from '../../Models/subdetailhead';
 import { Router } from '@angular/router';
+import { PaginatorModule } from 'primeng/paginator';
+
+
+
 
 
 @Component({
   selector: 'app-subdetailhead-list',
   standalone: true,
-  imports: [TableModule, ButtonModule, DialogModule],
+  imports: [TableModule, ButtonModule, DialogModule,PaginatorModule],
   templateUrl: './subdetailhead-list.component.html',
   styleUrl: './subdetailhead-list.component.css'
 })
@@ -28,7 +32,7 @@ export class SubdetailheadListComponent {
   visible: boolean = false;
 
   selectAll: boolean = false;
-
+ 
 
 
 
@@ -46,6 +50,7 @@ export class SubdetailheadListComponent {
 
 
   }
+ 
 
   back() {
     this.router.navigate(['/Add-subdetailhead']); // Assuming '/' is the route for your form

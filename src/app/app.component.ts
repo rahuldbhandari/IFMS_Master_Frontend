@@ -7,13 +7,14 @@ import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
+import { ToastModule } from 'primeng/toast';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,TabMenuModule,RouterLink,TableModule,ButtonModule,ReactiveFormsModule,CardModule,MenubarModule],
+  imports: [RouterOutlet,TabMenuModule,RouterLink,TableModule,ButtonModule,ReactiveFormsModule,CardModule,MenubarModule,ToastModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

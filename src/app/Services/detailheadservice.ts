@@ -28,6 +28,9 @@ export class HttpService {
  getDetailHead(detail_headId:number):Observable<singleDetailheadResponse>{
    return this.http.get<singleDetailheadResponse>(this.apiUrl + detail_headId);
   }
+  getdetailByCode(detail_headId:string):Observable<singleDetailheadResponse>{
+    return this.http.get<singleDetailheadResponse>(this.apiUrl +"DetailheadByCode/"+ detail_headId);
+   }
   updateDetailHead(detail_headId:number,detail_head:Idetailhead):Observable<singleDetailheadResponse>{
    return this.http.put<singleDetailheadResponse>(this.apiUrl+"DetailHeadUpdate/" +detail_headId,detail_head);
   }

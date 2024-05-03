@@ -7,7 +7,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { InputGroupAddonModule } from 'primeng/inputgroupaddon';
 import { HttpService } from '../../Services/detailheadservice';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Idetailhead } from '../../Models/detailhead';
+import { Idetailhead, singleDetailheadResponse } from '../../Models/detailhead';
 import { response } from 'express';
 import { DialogModule } from 'primeng/dialog';
 
@@ -28,12 +28,12 @@ export class DetailheadFormComponent {
   
   detailheadForm=this.formbuilder.group({
     
-    code:['',[Validators.required,Validators.minLength(2)]],
-    name:['',[Validators.required,Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
+    code:['',[Validators.required,Validators.maxLength(2)]],
+    name:['',[Validators.required,Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/),Validators.maxLength(150)]],
   });
   detailheadId!:number;
   isEdit= false;
-  visible: boolean = false;
+  disablebutton: boolean = true;
   ngOnInit(){
     this.detailheadId=this.route.snapshot.params['id'];
     if(this.detailheadId){
@@ -47,15 +47,17 @@ export class DetailheadFormComponent {
       cancel() {
         this.router.navigate(['/detailhead-list']); // Assuming '/' is the route for your form
       }
-      showDialog() {
-        this.visible = true;
-    }
+     
       save() {
         console.log(this.detailheadForm.value);
         const detail_head: Idetailhead = {
           name: this.detailheadForm.value.name!,
           code: this.detailheadForm.value.code!,
         
+        }
+        if (this.detailheadForm.controls['name'].errors && this.detailheadForm.controls['name'].errors['maxlength']) {
+          alert("Name cannot exceed 150 characters.");
+          return; // Stop execution if name exceeds 150 characters
         }
           if (this.isEdit) {
             if (this.detailheadForm.valid) {
@@ -72,7 +74,7 @@ export class DetailheadFormComponent {
               
             }
             else {
-              alert("Please fill the requierd field and use only character.");
+              alert("Please fill the requierd field.");
             }
           } else {
             if (this.detailheadForm.valid) {
@@ -91,6 +93,21 @@ export class DetailheadFormComponent {
       
           }
       
+        }
+        checkCodeExistence() {
+          const code = this.detailheadForm.value.code;
+          if (code && code.length >= 2 && code.length <= 4) {
+            this.httpService.getdetailByCode(code).subscribe((response: singleDetailheadResponse) => {
+              if (response && response.result) {
+                alert("This code already exists in the database.");
+                this.disablebutton=true;
+
+              }
+              else{
+                this.disablebutton=!this.detailheadForm.valid;
+              }
+            });
+          }
         }
       }
           

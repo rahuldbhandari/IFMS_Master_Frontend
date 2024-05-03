@@ -73,7 +73,7 @@
                 <label for="code">Detail Head Code
     
                 </label>
-                <input type="text" pInputText formControlName="code" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head Code">
+                <input type="text" pInputText formControlName="code" (blur)="checkCodeExistence()" class="text-base text-color surface-overlay p-2 surface-border border-round appearance-none  focus:border-primary w-full" name="code" placeholder="Detail Head Code">
             </div>
             <div class="flex justify-center ">
                 @if(isEdit)
@@ -83,7 +83,7 @@
     
                 }
                 @else{
-                    <p-button label="Create" class="btn pr-8" styleClass="w-full" type="submit"></p-button>
+                    <p-button label="Create" class="btn pr-8" styleClass="w-full" type="submit" [disabled]="disablebutton"></p-button>
                     <p-button label="Cancel" class="btn" styleClass="w-full" (click)="cancel()" severity="danger"></p-button>
     
                 }
