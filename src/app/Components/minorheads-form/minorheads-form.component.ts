@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MinorheadService } from '../../Services/minorhead.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Minorhead } from '../../Models/minorhead';
+import { Minorhead, SingleMinorheadResponse } from '../../Models/minorhead';
 import { SubmajorheadService } from '../../Services/submajorhead.service';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -107,4 +107,16 @@ export class MinorheadsFormComponent {
     this.router.navigateByUrl("/minorheads-list");
 
   }
+
+  checkCodeExistence() {
+    const code = this.minorHeadsForm.value.code;
+    if (code && code.length >= 2 && code.length <= 4) {
+      this.httpService.getMinorHeadsCode(code).subscribe((response: SingleMinorheadResponse) => {
+        if (response && response.result) {
+          alert("This code already exists in the database.");
+        }
+      });
+    }
+  }
+
 }

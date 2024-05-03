@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SubmajorheadService } from '../../Services/submajorhead.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Submajorhead } from '../../Models/submajorhead';
+import { SingleSubmajorheadResponse, Submajorhead } from '../../Models/submajorhead';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TreeSelectModule } from 'primeng/treeselect';
@@ -108,5 +108,15 @@ export class SubmajorheadsFormComponent {
     // console.log(id);
     this.router.navigateByUrl("/submajorheads-list");
 
+  }
+  checkCodeExistence() {
+    const code = this.submajorHeadsForm.value.code;
+    if (code && code.length >= 2 && code.length <= 4) {
+      this.httpService.getSubMajorheadsCode(code).subscribe((response: SingleSubmajorheadResponse) => {
+        if (response && response.result) {
+          alert("This code already exists in the database.");
+        }
+      });
+    }
   }
 }

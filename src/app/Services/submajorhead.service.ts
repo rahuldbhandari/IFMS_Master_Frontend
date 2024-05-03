@@ -19,6 +19,9 @@ export class SubmajorheadService {
   getSubMajorheads(submajorId: number): Observable<SingleSubmajorheadResponse> {
     return this.http.get<SingleSubmajorheadResponse>(this.apiUrl + "SubMajorHead/SubMajorHeadById/" + submajorId);
   }
+  getSubMajorheadsCode(code: string): Observable<SingleSubmajorheadResponse> {
+    return this.http.get<SingleSubmajorheadResponse>(this.apiUrl + "SubMajorHead/SubMajorHeadByCode/" + code);
+  }
   createSubMajorheads(submajorheads: Submajorhead): Observable<SingleSubmajorheadResponse> {
     return this.http.post<SingleSubmajorheadResponse>(this.apiUrl + "SubMajorHead/SubMajorHeadAdd", submajorheads);
   }

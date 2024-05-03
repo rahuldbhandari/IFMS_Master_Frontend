@@ -11,10 +11,14 @@
 
         <form [formGroup]="submajorHeadsForm" (ngSubmit)="save()">
             <input type="text" pInputText formControlName="name" placeholder="Enter Name" class="my-3 m-1" />
-            <input type="text" pInputText formControlName="code" placeholder="Enter Code" class="mb-3 m-1" />
+            <input type="text" pInputText formControlName="code" placeholder="Enter Code" class="mb-3 m-1"
+                (blur)="checkCodeExistence()" />
 
             <p-dropdown [options]="majorheads" placeholder="Select Majorhead" optionLabel="name" [showClear]="true"
-                optionValue="id" formControlName="majorHeadId"></p-dropdown>
+                optionValue="id" formControlName="majorHeadId" filter="true" filterBy="name,id">
+                <ng-template let-option pTemplate="item">
+                    {{ option.id }} : {{ option.name }} <!-- Display both name and id for each option -->
+                </ng-template></p-dropdown>
 
 
             <div class="">
