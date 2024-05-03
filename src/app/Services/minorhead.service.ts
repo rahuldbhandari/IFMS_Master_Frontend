@@ -21,6 +21,9 @@ export class MinorheadService {
   getMinorHeadsCode(code: string): Observable<SingleMinorheadResponse> {
     return this.http.get<SingleMinorheadResponse>(this.apiUrl + "MinorHead/MinorHeadByCode/" + code);
   }
+  getMinorheadsCodesubMajorId(code: string, subMajorId: number): Observable<SingleMinorheadResponse> {
+    return this.http.get<SingleMinorheadResponse>(this.apiUrl + "MinorHead/MinorHeadByCodesubMajorId/" + code + "/" + subMajorId);
+  }
   createMinorHeads(minorheads: Minorhead): Observable<SingleMinorheadResponse> {
     return this.http.post<SingleMinorheadResponse>(this.apiUrl + "MinorHead/MinorHeadAdd", minorheads);
   }

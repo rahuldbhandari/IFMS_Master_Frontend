@@ -107,13 +107,28 @@ export class MinorheadsFormComponent {
     this.router.navigateByUrl("/minorheads-list");
 
   }
+  // buttonDisabled: boolean = true;
+  // checkCodeExistence() {
+  //   const code = this.minorHeadsForm.value.code;
+  //   if (code && code.length <= 4) {
+  //     this.httpService.getMinorHeadsCode(code).subscribe((response: SingleMinorheadResponse) => {
+  //       if (response && response.result) {
+  //         alert("This code already exists.");
+  //         this.buttonDisabled = true; // Disable the button if code already exists
+  //       } else {
+  //         this.buttonDisabled = !this.minorHeadsForm.valid; // Enable/disable based on form validity
+  //       }
+  //     });
+  //   }
+  // }
   buttonDisabled: boolean = true;
   checkCodeExistence() {
     const code = this.minorHeadsForm.value.code;
-    if (code && code.length <= 4) {
-      this.httpService.getMinorHeadsCode(code).subscribe((response: SingleMinorheadResponse) => {
+    const subMajorId = this.minorHeadsForm.value.subMajorId;
+    if (code && subMajorId && code.length <= 4) {
+      this.httpService.getMinorheadsCodesubMajorId(code, subMajorId).subscribe((response: SingleMinorheadResponse) => {
         if (response && response.result) {
-          alert("This code already exists.");
+          alert("This code already exists for the selected major head.");
           this.buttonDisabled = true; // Disable the button if code already exists
         } else {
           this.buttonDisabled = !this.minorHeadsForm.valid; // Enable/disable based on form validity
